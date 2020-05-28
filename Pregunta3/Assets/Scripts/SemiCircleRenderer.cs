@@ -32,11 +32,20 @@ public class SemiCircleRenderer : MonoBehaviour
 
     private void Start()
     {
-        var center = useGameobjectAsCenter ? transform.position : centerPosition;
-        PlacePoints(radius, transform.position, pointsNumber, axis);
+        SetCenterAndPoints();
+    }
+    
+    private void Update()
+    {
+        if (!resetPosition)
+        {
+            ResetPoints();
+            SetCenterAndPoints();
+            resetPosition = true;
+        }
     }
 
-    public void PlacePoints(float _radius, Vector3 _centerPosition, int _pointsNumber, string _axis)
+    private void PlacePoints(float _radius, Vector3 _centerPosition, int _pointsNumber, string _axis)
     {
         var lookDirection = Vector3.zero;
         switch (_axis)
@@ -51,13 +60,15 @@ public class SemiCircleRenderer : MonoBehaviour
                 lookDirection = Vector3.up;
                 break;
         }
-
+        
+        Instante_Point("CenterPoint",_centerPosition,true);
+        
         var centerDirection = Quaternion.LookRotation(lookDirection * _radius);
 
         for (var i = 0; i < _pointsNumber; i++)
         {
             var angle = Mathf.PI * (i + 1) / (_pointsNumber + 1f);
-
+      
             var axis1 = Mathf.Sin(angle) * _radius;
             var axis2 = Mathf.Cos(angle) * _radius;
 
@@ -77,25 +88,32 @@ public class SemiCircleRenderer : MonoBehaviour
             }
 
             position = centerDirection * position;
-            var circle = Instantiate(circlesPrefab, _centerPosition + position, Quaternion.identity);
-            points.Add(circle);
+            
+            Instante_Point("Point-" + i,_centerPosition + position,false);
         }
     }
 
+    #region Utils
+    private void SetCenterAndPoints()
+    {
+        var center = useGameobjectAsCenter ? transform.position : centerPosition;
+        PlacePoints(radius, center, pointsNumber, axis);
+    }
+    
+    private void Instante_Point(string _name,Vector3 _centerPosition, bool _changeColor=false)
+    {
+        var point = Instantiate(circlesPrefab, _centerPosition, Quaternion.identity);
+        point.name = _name;
+        if(_changeColor)
+            point.GetComponent<SpriteRenderer>().color=Color.Lerp(Color.red,Color.white,.5f);
+        point.transform.parent = transform;
+        points.Add(point);
+    }    
+    
     private void ResetPoints()
     {
         for (var i = 0; i < points.Count; i++) Destroy(points[i]);
         points.Clear();
     }
-
-    private void Update()
-    {
-        if (!resetPosition)
-        {
-            ResetPoints();
-            var center = useGameobjectAsCenter ? transform.position : centerPosition;
-            PlacePoints(radius, center, pointsNumber, axis);
-            resetPosition = true;
-        }
-    }
+    #endregion
 }
