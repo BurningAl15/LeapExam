@@ -1,33 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class SemiCircleRenderer : MonoBehaviour
 {
-    [Header("Radio")]
+    [Header("Radio")] 
     [Tooltip("Radio (r)")] 
     [SerializeField] private float radius;
 
     [Header("Número de puntos")]
-    [Tooltip("Número de puntos (n)")] 
+    [Tooltip("Número de puntos (n)")]
     [SerializeField] private int pointsNumber;
 
-    [SerializeField] private bool useGameobjectAsCenter = false;
+    [SerializeField] private bool useGameobjectAsCenter;
 
     [Header("Centro")]
     [Tooltip("Centro (P)")] 
     [SerializeField] private Vector3 centerPosition;
 
     [Header("Extras")]
-    [Tooltip("Eje en el que se muestra la semicircunferencia")] 
+    [Tooltip("1) Eje en el que se muestra la semicircunferencia " + "2) Hay 3 opciones xy, xz, yz")]
     [SerializeField] private string axis;
-    [FormerlySerializedAs("circles")] [SerializeField] private GameObject circlesPrefab;
+
+    [FormerlySerializedAs("circles")] [SerializeField]
+    private GameObject circlesPrefab;
+
+    [FormerlySerializedAs("resetPos")] [SerializeField]
+    private bool resetPosition;
+
+    [SerializeField] private List<GameObject> points = new List<GameObject>();
 
     private void Start()
     {
-        var center = useGameobjectAsCenter ? this.transform.position : centerPosition;
+        var center = useGameobjectAsCenter ? transform.position : centerPosition;
         PlacePoints(radius, transform.position, pointsNumber, axis);
     }
 
@@ -73,7 +78,24 @@ public class SemiCircleRenderer : MonoBehaviour
 
             position = centerDirection * position;
             var circle = Instantiate(circlesPrefab, _centerPosition + position, Quaternion.identity);
-            circle.transform.localScale = Vector3.one * .25f;
+            points.Add(circle);
+        }
+    }
+
+    private void ResetPoints()
+    {
+        for (var i = 0; i < points.Count; i++) Destroy(points[i]);
+        points.Clear();
+    }
+
+    private void Update()
+    {
+        if (!resetPosition)
+        {
+            ResetPoints();
+            var center = useGameobjectAsCenter ? transform.position : centerPosition;
+            PlacePoints(radius, center, pointsNumber, axis);
+            resetPosition = true;
         }
     }
 }
