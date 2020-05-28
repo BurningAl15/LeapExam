@@ -2,18 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SemiCircleRenderer : MonoBehaviour
 {
+    [Header("Radio")]
+    [Tooltip("Radio (r)")] 
     [SerializeField] private float radius;
 
+    [Header("Número de puntos")]
+    [Tooltip("Número de puntos (n)")] 
     [SerializeField] private int pointsNumber;
 
+    [SerializeField] private bool useGameobjectAsCenter = false;
+
+    [Header("Centro")]
+    [Tooltip("Centro (P)")] 
+    [SerializeField] private Vector3 centerPosition;
+
+    [Header("Extras")]
+    [Tooltip("Eje en el que se muestra la semicircunferencia")] 
     [SerializeField] private string axis;
-    [SerializeField] private GameObject circles;
+    [FormerlySerializedAs("circles")] [SerializeField] private GameObject circlesPrefab;
 
     private void Start()
     {
+        var center = useGameobjectAsCenter ? this.transform.position : centerPosition;
         PlacePoints(radius, transform.position, pointsNumber, axis);
     }
 
@@ -58,7 +72,7 @@ public class SemiCircleRenderer : MonoBehaviour
             }
 
             position = centerDirection * position;
-            var circle = Instantiate(circles, _centerPosition + position, Quaternion.identity);
+            var circle = Instantiate(circlesPrefab, _centerPosition + position, Quaternion.identity);
             circle.transform.localScale = Vector3.one * .25f;
         }
     }
