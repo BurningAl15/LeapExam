@@ -1,0 +1,18 @@
+Pregunta 1)
+
+i) Hallando i
+Saca la raiz cuadrada de el parametro N
+
+ii) Hallando j
+Redondea hacía arriba y se castea a integer (lo que probablemente ayude a obtener 1 si el valor de i es .5 por ejemplo)
+
+iii) Asignando k a x
+Se inicializa x como 2 (el primer valor a dividir los números)
+
+iv) En el bucle
+(k=2 -> x=k)
+Dentro del bucle revisa si:
+*El número es divisible entre el valor actual de x (2 para comenzar, osea ve si es par)
+*Sino, aumenta el contador, de manera que revisa si es divisible entre 2,3,4,etc y así, dejando solo pasar a los números primos, que son indivisibles por el resto.
+
+En general lo que hace este algoritmo es revisar si un número es primo o no.
