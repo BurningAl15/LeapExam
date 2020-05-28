@@ -1,0 +1,11 @@
+Pregunta 9)
+
+El instanciar y borrar llena de basura la memoria, lo que a la larga afecta el rendimiento del juego.
+La mejor solución para este problema es hacer Object Pooling.
+
+El Object Pooling consta de instanciar N elementos y  se desactivan. 
+Cada que debería instanciarse este objeto, se cambia la posición y se activa el objeto.
+El objeto se vuelve a desactivar cuando es necesario (colisiona con un objeto o alguna condición de destrucción).
+Este objeto se vuelve a activar cuando se necesita volver a instanciar algo, así se mantienen activos y no se crea basura de manera innecesaria, pues siempre se usan los mismos objetos.
+
+Este método se puede ampliar añadiendo elementos, si es necesario, en runtime.
