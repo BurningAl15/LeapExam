@@ -7,6 +7,7 @@ public class ChipInteraction : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        transform.Rotate(Vector3.forward*-90f);
+        if(GridChipChecker._instance.GetState())
+            transform.Rotate(Vector3.forward*-90f);
     }
 }

@@ -26,12 +26,12 @@ public class ColliderChecker : MonoBehaviour
                 if (chipLogic.chipType == ChipLogic.ChipType.Single && chipLogic.Index == 1)
                 {
                     chipLogic.HasBeenConnected = true;
-                    GridChipChecker._instance.AddElementsFinished();
+                    GridChipChecker._instance.AddConnectedChips();
                 }
                 else if (chipLogic.chipType == ChipLogic.ChipType.Double && chipLogic.Index == 2)
                 {
                     chipLogic.HasBeenConnected = true;
-                    GridChipChecker._instance.AddElementsFinished();
+                    GridChipChecker._instance.AddConnectedChips();
                 }
             }
         }
@@ -48,12 +48,12 @@ public class ColliderChecker : MonoBehaviour
                 if (chipLogic.chipType == ChipLogic.ChipType.Single && chipLogic.Index != 1)
                 {
                     chipLogic.HasBeenConnected = false;
-                    GridChipChecker._instance.RemoveElementsFinished();
+                    GridChipChecker._instance.RemoveConnectedChips();
                 }
                 else if (chipLogic.chipType == ChipLogic.ChipType.Double && chipLogic.Index != 2)
                 {
                     chipLogic.HasBeenConnected = false;
-                    GridChipChecker._instance.RemoveElementsFinished();
+                    GridChipChecker._instance.RemoveConnectedChips();
                 }
             }
         }

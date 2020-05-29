@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ChipLogic : MonoBehaviour
 {
-    [SerializeField] private bool chipIsColliding;
     public enum ChipType
     {
         Single,Double
@@ -16,6 +15,7 @@ public class ChipLogic : MonoBehaviour
     [SerializeField] private List<ColliderChecker> chipColliders = new List<ColliderChecker>();
     
     [SerializeField] private int index = 0;
+    
     
     public int Index
     {
