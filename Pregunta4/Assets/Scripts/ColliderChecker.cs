@@ -20,7 +20,9 @@ public class ColliderChecker : MonoBehaviour
         {
             chipIsColliding = true;
             chipLogic.Index++;
-
+            
+            chipLogic.ChangeColor(ColorUtils._instance.GetCurrentColor_InGame());
+            
             if (!chipLogic.HasBeenConnected)
             {
                 if (chipLogic.chipType == ChipLogic.ChipType.Single && chipLogic.Index == 1)
@@ -42,6 +44,8 @@ public class ColliderChecker : MonoBehaviour
         {
             chipIsColliding = false;
             chipLogic.Index--;
+
+            chipLogic.ChangeColor(Color.white);
             
             if (chipLogic.HasBeenConnected)
             {

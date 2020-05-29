@@ -15,8 +15,19 @@ public class ChipLogic : MonoBehaviour
     [SerializeField] private List<ColliderChecker> chipColliders = new List<ColliderChecker>();
     
     [SerializeField] private int index = 0;
-    
-    
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void ChangeColor(Color _color)
+    {
+        spriteRenderer.color = _color;
+    }
+
     public int Index
     {
         get => index;
