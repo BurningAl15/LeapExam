@@ -33,6 +33,8 @@ public class CollidableObject : MonoBehaviour
         ChangeColor();
     }
 
+    #region Check Collisions
+
     private void CheckCollision(GameObject _otherObject_1, GameObject _otherObject_2)
     {
         if (_otherObject_1.transform.position.x < transform.position.x + width &&
@@ -78,6 +80,11 @@ public class CollidableObject : MonoBehaviour
         }
     }
 
+    #endregion
+    
+
+    #region Color and Rendering Utils
+
     public void ChangeColor()
     {
         if (isColliding1)
@@ -99,5 +106,7 @@ public class CollidableObject : MonoBehaviour
             Gizmos.color = new Color(1, 0, 0, .5f);
 
         Gizmos.DrawCube(transform.position, new Vector3(width, height, .1f));
-    }
+    }    
+
+    #endregion
 }
