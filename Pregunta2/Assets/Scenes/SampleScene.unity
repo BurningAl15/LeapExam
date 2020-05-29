@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 518001822}
   - component: {fileID: 518001824}
   m_Layer: 0
-  m_Name: Object1 (2)
+  m_Name: RectangleC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
-  elementB: {fileID: 1228076768}
-  elementC: {fileID: 1486513730}
+  rectangle_B: {fileID: 1228076768}
+  rectangle_C: {fileID: 1486513730}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 1228076769}
   - component: {fileID: 1228076771}
   m_Layer: 0
-  m_Name: Object1
+  m_Name: RectangleA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,8 +398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
-  elementB: {fileID: 1486513730}
-  elementC: {fileID: 518001821}
+  rectangle_B: {fileID: 1486513730}
+  rectangle_C: {fileID: 518001821}
 --- !u!1 &1486513730
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 1486513731}
   - component: {fileID: 1486513733}
   m_Layer: 0
-  m_Name: Object1 (1)
+  m_Name: RectangleB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,5 +496,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
-  elementB: {fileID: 1228076768}
-  elementC: {fileID: 518001821}
+  rectangle_B: {fileID: 1228076768}
+  rectangle_C: {fileID: 518001821}
