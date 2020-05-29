@@ -7,38 +7,44 @@ public class ChipLogic : MonoBehaviour
 {
     public enum ChipType
     {
-        Single,Double
+        Single,
+        Double
     }
 
+    [Header("Chip Type")]
+    [Tooltip("Tipos de chips: Las que tienen una sola salida (Single), las que tienen dos (Double)")]
     public ChipType chipType;
 
-    [SerializeField] private List<ColliderChecker> chipColliders = new List<ColliderChecker>();
-    
-    [SerializeField] private int index = 0;
+    [Tooltip("Colliders hijos (Single - 1 Collider)/(Double - 2 Colliders)")] [SerializeField]
+    private List<ColliderChecker> chipColliders = new List<ColliderChecker>();
 
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private int connectedElementsCounter = 0;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private bool hasBeenConnected = false;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    #region Chip Logic Utils
+
     public void ChangeColor(Color _color)
     {
         spriteRenderer.color = _color;
     }
 
-    public int Index
+    public int ConnectedElementsCounter
     {
-        get => index;
-        set => index = value;
+        get => connectedElementsCounter;
+        set => connectedElementsCounter = value;
     }
-
-    [SerializeField] private bool hasBeenConnected = false;
 
     public bool HasBeenConnected
     {
         get => hasBeenConnected;
         set => hasBeenConnected = value;
     }
+
+    #endregion
 }

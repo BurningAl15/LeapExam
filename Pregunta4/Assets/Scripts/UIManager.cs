@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class AnimateTitle : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
+    [Header("Chips In UI")]
     [SerializeField] private List<Image> images = new List<Image>();
 
-    [SerializeField] private int imagesIndex = 0;
+    private int imagesIndex = 0;
 
     private bool breakLoop = false;
 
@@ -17,6 +17,7 @@ public class AnimateTitle : MonoBehaviour
     private Color currentColor;
     private Color nextColor;
 
+    [Header("UI Containers")]
     [SerializeField] private GameObject UI;
     [SerializeField] private GameObject imageSlide;
 

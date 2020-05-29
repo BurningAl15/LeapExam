@@ -18,6 +18,8 @@ public class ColorUtils : MonoBehaviour
             Destroy(this.gameObject);
     }
 
+    #region Utils
+    
     public Color GetCurrentColor_UI(int colorIndex)
     {
         return colors[colorIndex];
@@ -37,4 +39,6 @@ public class ColorUtils : MonoBehaviour
     {
         return colors.Count;
     }
+
+    #endregion
 }

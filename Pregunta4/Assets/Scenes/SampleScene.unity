@@ -470,7 +470,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 136598348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c585e9132e019ac45ac9b902d24aca85, type: 3}
+  m_Script: {fileID: 11500000, guid: bbc037b014ed1fa4da24577fcbb8e5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   images:
@@ -508,27 +508,8 @@ MonoBehaviour:
   - {fileID: 1570815580}
   - {fileID: 1561353223}
   - {fileID: 213815958}
-  imagesIndex: 0
-  colorIndex: 0
-  colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0.5423229, b: 0, a: 1}
-  - {r: 0.993973, g: 1, b: 0, a: 1}
-  - {r: 0.49411765, g: 1, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.15852618, a: 1}
-  - {r: 0, g: 1, b: 0.8982549, a: 1}
-  - {r: 0, g: 0.4509804, b: 1, a: 1}
-  - {r: 0.07132578, g: 0, b: 1, a: 1}
-  - {r: 0.45281696, g: 0, b: 1, a: 1}
-  - {r: 0.93796444, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.36519527, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
-  nextColor: {r: 0, g: 0, b: 0, a: 0}
   UI: {fileID: 1449039582}
   imageSlide: {fileID: 1689915475}
-  initialPosition: {x: 0, y: 0, z: 0}
-  endPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &213815956
 GameObject:
   m_ObjectHideFlags: 0

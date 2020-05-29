@@ -18,7 +18,7 @@ public class GridChipChecker : MonoBehaviour
 
     private int elementsFinished;
 
-    private bool finishGame=false;
+    private bool finishGame = false;
     
     private void Awake()
     {
