@@ -16,26 +16,18 @@ public class ChipLogic : MonoBehaviour
     [SerializeField] private List<ColliderChecker> chipColliders = new List<ColliderChecker>();
     
     [SerializeField] private int index = 0;
-
+    
     public int Index
     {
         get => index;
         set => index = value;
     }
 
-    private bool hasChanged = false;
-    
-    void Start()
-    {
+    [SerializeField] private bool hasBeenConnected = false;
 
-    }
-
-    void Update()
+    public bool HasBeenConnected
     {
-        // if (hasChanged)
-        // {
-        //     
-        // }
+        get => hasBeenConnected;
+        set => hasBeenConnected = value;
     }
-  
 }
