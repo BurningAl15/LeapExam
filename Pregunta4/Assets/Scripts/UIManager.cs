@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,8 +19,11 @@ public class UIManager : MonoBehaviour
     private Color currentColor;
     private Color nextColor;
 
+    [FormerlySerializedAs("TitleUI")]
+    [FormerlySerializedAs("UI")]
     [Header("UI Containers")]
-    [SerializeField] private GameObject UI;
+    [SerializeField] private GameObject titleUI;
+    [FormerlySerializedAs("PlayAgainUI")] [SerializeField] private GameObject playAgainUI;
     [SerializeField] private GameObject imageSlide;
 
     private Vector3 initialPosition, endPosition;
@@ -27,6 +32,8 @@ public class UIManager : MonoBehaviour
     {
         ColorAsigner();
 
+        playAgainUI.SetActive(false);
+        
         var tempImgSlidePos = imageSlide.GetComponent<RectTransform>().localPosition;
 
         initialPosition = Vector3.one;
@@ -87,7 +94,7 @@ public class UIManager : MonoBehaviour
             images[i].color = Color.Lerp(currentColor, nextColor, 1);
         }
 
-        UI.SetActive(false);
+        titleUI.SetActive(false);
 
         for (float j = 0; j < 1; j += Time.deltaTime)
         {
@@ -97,6 +104,20 @@ public class UIManager : MonoBehaviour
 
         GridChipChecker._instance.ChangeToPlay();
         StopCoroutine("ButtonPress");
+    }
+
+    IEnumerator PlayAgain_UI()
+    {
+        for (float j = 0; j < 1; j += Time.deltaTime)
+        {
+            imageSlide.GetComponent<RectTransform>().localPosition = Vector3.Lerp( endPosition,initialPosition, j);
+            yield return null;
+        }
+        imageSlide.GetComponent<RectTransform>().localPosition = initialPosition;
+
+        playAgainUI.SetActive(true);
+        
+        StopCoroutine("PlayAgain_UI");
     }
 
     #endregion
@@ -110,5 +131,15 @@ public class UIManager : MonoBehaviour
         nextColor = ColorUtils._instance.GetCurrentColor_UI(colorIndex);
     }
 
+    public void CallPlayAgainUI()
+    {
+        StartCoroutine(PlayAgain_UI());
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
     #endregion
 }

@@ -19,6 +19,8 @@ public class GridChipChecker : MonoBehaviour
     private int elementsFinished;
 
     private bool finishGame = false;
+
+    [SerializeField] private UIManager uiManager;
     
     private void Awake()
     {
@@ -33,9 +35,16 @@ public class GridChipChecker : MonoBehaviour
 
     void Update()
     {
-        if (chips.Count == elementsFinished && !finishGame)
+        if (gameState == GameState.Play)
         {
-            ChangeToWin();            
+            if (chips.Count == elementsFinished)
+            {
+                ChangeToWin();
+            }
+        }
+        else if (gameState == GameState.Win && !finishGame)
+        {
+            uiManager.CallPlayAgainUI();
             finishGame = true;
         }
     }
