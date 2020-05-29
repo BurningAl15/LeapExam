@@ -152,8 +152,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   pointsNumber: 25
-  axis: xy
-  circles: {fileID: 2236848380103028246, guid: c9f339537324be64da3af5f2bca810be, type: 3}
+  useGameobjectAsCenter: 0
+  centerPosition: {x: 0, y: 0, z: 0}
+  axis: yz
+  circlesPrefab: {fileID: 2236848380103028246, guid: c9f339537324be64da3af5f2bca810be,
+    type: 3}
+  resetPosition: 0
+  points: []
 --- !u!4 &27928231
 Transform:
   m_ObjectHideFlags: 0
