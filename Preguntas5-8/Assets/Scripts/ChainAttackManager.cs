@@ -14,7 +14,7 @@ public class ChainAttackManager : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
-    void Start()
+    void Awake()
     {
         if (_instance == null)
             _instance = this;
@@ -27,11 +27,13 @@ public class ChainAttackManager : MonoBehaviour
 
     public void GetDelay(float _currentDelay,float _maxDelay)
     {
+        print("Call Delay");
         ChangeAlpha(_currentDelay/_maxDelay);
     }
 
     public void CallMessage()
     {
+        print("Call Message");
         chainIndex++;
         chainText.text = "Chain Attack!\nx" + chainIndex;
         ChangeAlpha(1);
@@ -40,6 +42,7 @@ public class ChainAttackManager : MonoBehaviour
 
     public void Reset()
     {
+        print("Call Reset");
         ChangeAlpha(0);
         chainIndex = 0;
         chainText.text = "Chain Attack!\nx" + chainIndex;

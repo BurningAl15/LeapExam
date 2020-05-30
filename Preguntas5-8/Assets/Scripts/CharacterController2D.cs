@@ -14,8 +14,10 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Movement")] [SerializeField] private float speed;
     private int direction = 1;
+    public int Direction => direction;
 
-    [Header("Jump")] public bool isGrounded;
+    [Header("Jump")]
+    public bool isGrounded;
     [SerializeField] private Transform feetPos;
     [SerializeField] private float checkRadius;
     [SerializeField] private LayerMask whatIsGround;
@@ -53,6 +55,7 @@ public class CharacterController2D : MonoBehaviour
         Application.targetFrameRate = 60;
         gravityScale = rgb.gravityScale;
         attackChainTimer = attackChainMaxDelay;
+        ChainAttackManager._instance.Reset();
     }
 
     #region Input Methods
@@ -277,7 +280,7 @@ public class CharacterController2D : MonoBehaviour
             anim.SetInteger("RangeAttackIndex", rangeAttackIndex);
             anim.SetInteger("AirAttackIndex", airAttackIndex);
 
-            ChainAttackManager._instance.Reset();
+            // ChainAttackManager._instance.Reset();
 
             rgb.gravityScale = gravityScale;
             attackChainTimer = attackChainMaxDelay;
@@ -344,6 +347,70 @@ public class CharacterController2D : MonoBehaviour
     }
 
     #endregion
+
+    // IEnumerator Finish_Attack(string _attackType, string _attackTypeIndex)
+    // {
+    //     while (finishAttack)
+    //     {
+    //         
+    //     }
+    //     //Reset if melee
+    //     if (GetAttackType("melee"))
+    //         // ResetAttackTrigger("MeleeAttack", "MeleeAttackIndex");
+    //     {
+    //         if (finishAttack)
+    //         {
+    //             if (attackChainTimer >= 0)
+    //             {
+    //                 attackChainTimer -= 0.01f;
+    //
+    //                 ChainAttackManager._instance.GetDelay(attackChainTimer,attackChainMaxDelay);
+    //
+    //             }
+    //             else if (attackChainTimer < 0)
+    //             {
+    //                 switch (_attackType)
+    //                 {
+    //                     case "MeleeAttack":
+    //                         meleeAttack = false;
+    //                         anim.SetBool(_attackType, meleeAttack);
+    //                         meleeAttackIndex = -1;
+    //                         anim.SetInteger(_attackTypeIndex, meleeAttackIndex);
+    //                         break;
+    //                     case "RangeAttack":
+    //                         rangeAttack = false;
+    //                         anim.SetBool(_attackType, rangeAttack);
+    //                         rangeAttackIndex = -1;
+    //                         anim.SetInteger(_attackTypeIndex, rangeAttackIndex);
+    //                         break;
+    //                     case "AirAttack":
+    //                         airAttack = false;
+    //                         anim.SetBool(_attackType, airAttack);
+    //                         airAttackIndex = -1;
+    //                         anim.SetInteger(_attackTypeIndex, airAttackIndex);
+    //                         break;
+    //                 }
+    //
+    //                 ChainAttackManager._instance.Reset();
+    //
+    //                 rgb.gravityScale = gravityScale;
+    //                 attackChainTimer = attackChainMaxDelay;
+    //             }
+    //         }
+    //     }
+    //     //Reset if range
+    //     else if (GetAttackType("range"))
+    //         ResetAttackTrigger("RangeAttack", "RangeAttackIndex");
+    //     else
+    //     {
+    //         //Reset if air
+    //         if (GetAttackType("air"))
+    //             ResetAttackTrigger("AirAttack", "AirAttackIndex");
+    //         //Reset all
+    //         else
+    //             ResetAttackAnimations();
+    //     }
+    // }
 
     private void OnDrawGizmos()
     {
