@@ -28,7 +28,10 @@ public class CharacterController2D : MonoBehaviour
     private bool meleeAttack = false;
 
     [SerializeField] private int meleeAttackIndex = -1;
-
+    [SerializeField] private Transform attackPoint;
+    public float attackRange = .5f;
+    public LayerMask enemyLayer;
+    
     [Header("Range Attack")] [SerializeField]
     private bool rangeAttack = false;
 
@@ -318,14 +321,30 @@ public class CharacterController2D : MonoBehaviour
     public void Camera_Shake_Hit1()
     {
         CameraShake._instance._Shake(.05f,.05f);
+        MeleeImpact();
     }
     public void Camera_Shake_Hit2()
     {
         CameraShake._instance._Shake(.1f,.075f);
+        MeleeImpact();
     }
     public void Camera_Shake_Hit3()
     {
         CameraShake._instance._Shake(.05f,.1f);
+        MeleeImpact();
+    }
+
+    void MeleeImpact()
+    {
+        //Check if an enemy is range
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Enemy tempEnemy=enemy.gameObject.GetComponent<Enemy>();
+            tempEnemy.Damage(10);
+            Interlink._instance.TryInterlink(tempEnemy);
+        }
     }
 
     #endregion
@@ -416,8 +435,12 @@ public class CharacterController2D : MonoBehaviour
     {
         Gizmos.color = new Color(1, 0, 0, .5f);
         Gizmos.DrawSphere(feetPos.transform.position, checkRadius);
+
         Gizmos.color = new Color(0, 1, 0, .5f);
         Gizmos.DrawSphere(throwPoints[0].transform.position, checkRadius);
         Gizmos.DrawSphere(throwPoints[1].transform.position, checkRadius);
+        
+        Gizmos.color = new Color(0, 0, 1, .5f);
+        Gizmos.DrawSphere(attackPoint.transform.position, attackRange);
     }
 }

@@ -14,8 +14,13 @@ public class LockOnSystem : MonoBehaviour
     private int selectedIndex;
     [SerializeField] private float maxDistance=20;
     private Enemy[] tempEnemies;
+
+    private Camera camera;
+    
     private void Awake()
     {
+        camera = Camera.main;
+        
         pos = player.transform.position;
         forward = Vector3.right;
         
@@ -32,6 +37,7 @@ public class LockOnSystem : MonoBehaviour
         //Sort enemies by distance
         tempEnemies = tempEnemies.OrderBy(c => GetDistance(c)).ToArray();
 
+        DeactivateAllEnemies();
         activeEnemies.Clear();
         
         //Remove enemies by direction
@@ -39,14 +45,20 @@ public class LockOnSystem : MonoBehaviour
         {
             if (IsInRange(tempEnemies[i]))
             {
-                if(IsInVisionField(tempEnemies[i],forward,90))
+                if(IsInVisionField(tempEnemies[i],forward,90) && IsInCameraFOV(tempEnemies[i]))
                     activeEnemies.Add(tempEnemies[i]);
             }
-            else
-            {
-                DeactivateByIndex(i);
-            }
         }
+    }
+
+    bool IsInCameraFOV(Enemy _enemy)
+    {
+        Vector2 bounds =
+            camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.transform.position.z));
+        Vector2 enemyPosition = _enemy.transform.position;
+        bool condition = enemyPosition.x < bounds.x && enemyPosition.x > bounds.x * -1 && enemyPosition.y < bounds.y &&
+                         enemyPosition.y > bounds.y * -1;
+        return condition;
     }
     
     Vector3 LookingDirection(Enemy _tempEnemy)
@@ -94,12 +106,16 @@ public class LockOnSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            forward = Vector3.left * LookingDirection(activeEnemies[selectedIndex]).x;
+            forward = Vector3.left;
+            FilterEnemies();
+            ActivateEnemies();
         }
             
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            forward = Vector3.right * LookingDirection(activeEnemies[selectedIndex]).x;
+            forward = Vector3.right;
+            FilterEnemies();
+            ActivateEnemies();
         }
 
         Debug.DrawRay(pos,Quaternion.Euler(GetVisionField(activeEnemies[selectedIndex],forward), 0, 0)*forward,Color.red );
@@ -142,10 +158,6 @@ public class LockOnSystem : MonoBehaviour
             }
             activeEnemies[selectedIndex].ActivateEnemy();
         }
-        else
-        {
-            DeactivateAllEnemies();
-        }
     }
 
     void DeactivateAllEnemies()
@@ -154,11 +166,5 @@ public class LockOnSystem : MonoBehaviour
         {
             tempEnemies[i].DeactivateEnemy();
         }
-        Debug.Log("Calling");
-    }
-
-    void DeactivateByIndex(int _enemyIndex)
-    {
-        tempEnemies[_enemyIndex].DeactivateEnemy();
     }
 }

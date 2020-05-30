@@ -21,5 +21,11 @@ public class RangeWeapon : MonoBehaviour
             rgb.velocity=Vector2.zero;
             gameObject.SetActive(false);
         }
+        else if (other.CompareTag("Enemy"))
+        {
+            rgb.velocity = Vector2.zero;
+            gameObject.SetActive(false);
+            other.GetComponent<Enemy>().Damage(5);
+        }
     }
 }

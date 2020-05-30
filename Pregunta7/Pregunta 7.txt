@@ -1,0 +1,18 @@
+Primero pensé en como filtrar los enemigos con todas las condiciones que dieron:
+
+1) Obtener todos los enemigos de la escena y guardarlos en caché
+2) Ordenarlos (para poder seleccionar según quien esta más cerca luego)
+3) Luego añadir a la lista de activos solo los que cumplen las condiciones:
+- Que estan dentro del rango (cuya distancia es menor a 20 unidades)
+- Que estan siendo renderizados por la cámara (Esten dentro de los bounds de esta)
+- Que estan en el cono de visión.
+
+Para las condiciones cree funciones booleanas para preguntar si el enemigo las cumple, si todas son satisfechas entonces el enemigo se añade a la lista, de lo contrario no.
+
+Para obtener el vector forward se sacaría la diferencia entre el posible enemigo idoneo y la posición del personaje.
+
+En mi caso lo probé en 2d y se me complicó saber cuando volteaba, por lo que para que fuese funcional simulé cambiando los valores de forward por vector3.right y vector3.left la dirección a donde mira (esto porque es el eje en el que el jugador estaría viendo).
+
+Añadí 2 input que son las flechas izquierda y derecha para poder recorrer los enemigos en pantalla que estan en la lista y se pueda mostrar visualmente.
+
+En mi caso particular, y para que simulara una funcionalidad añadí que cuando se cambiara el vector a donde el personaje ve (forward) se hiciera en ese momento el filtrado de enemigos a la lista de enemigos activos y luego se activara el lock on visualmente.

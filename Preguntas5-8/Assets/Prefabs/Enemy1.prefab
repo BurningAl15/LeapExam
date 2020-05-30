@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1461076040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LockOnPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2040835741}
   - component: {fileID: 2040835742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LockOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,8 @@ GameObject:
   - component: {fileID: 8408842652919584290}
   - component: {fileID: 8408842652919584285}
   - component: {fileID: 648635774143614612}
-  m_Layer: 0
+  - component: {fileID: 2036075100}
+  m_Layer: 9
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -256,4 +257,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de806bfba0087949bf135976844d1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthPoints: 200
+  currentHealthPoints: 0
   lockOnPoint: {fileID: 1461076039}
+  anim: {fileID: 2036075100}
+--- !u!95 &2036075100
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408842652919584284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2298b2a6597449c4cbac574960dbb8ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
