@@ -91,9 +91,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: MeleeAttack
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: MeleeAttackIndex
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3200955388891971920}
   m_Solo: 0
@@ -116,9 +113,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VerticalSpeed
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: AirAttack
     m_EventTreshold: 0
@@ -287,9 +281,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VerticalSpeed
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: AirAttack
     m_EventTreshold: 0
@@ -535,9 +526,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: MeleeAttack
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: MeleeAttackIndex
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3200955388891971920}
   m_Solo: 0
@@ -622,9 +610,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: VerticalSpeed
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: AirAttack
     m_EventTreshold: 0
@@ -857,16 +842,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3200955388891971920}
-    m_Position: {x: 150, y: 500, z: 0}
+    m_Position: {x: 100, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8634539827831960725}
-    m_Position: {x: -240, y: 500, z: 0}
+    m_Position: {x: -420, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7321773058846292901}
-    m_Position: {x: 150, y: 950, z: 0}
+    m_Position: {x: -350, y: 890, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2829486688629510761}
-    m_Position: {x: -150, y: 1290, z: 0}
+    m_Position: {x: -210, y: 1370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -904010751044238568}
     m_Position: {x: 520, y: 1360, z: 0}
@@ -881,13 +866,13 @@ AnimatorStateMachine:
     m_Position: {x: 1250, y: 620, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4484180406707047012}
-    m_Position: {x: 150, y: 200, z: 0}
+    m_Position: {x: 100, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7329726431701477825}
-    m_Position: {x: 730, y: 670, z: 0}
+    m_Position: {x: 720, y: 880, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4185891819379958730}
-    m_Position: {x: 720, y: 260, z: 0}
+    m_Position: {x: 710, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4391180383606962637}
     m_Position: {x: 1990, y: -40, z: 0}
@@ -901,8 +886,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 170, y: -30, z: 0}
-  m_EntryPosition: {x: -220, y: 280, z: 0}
+  m_AnyStatePosition: {x: 120, y: -30, z: 0}
+  m_EntryPosition: {x: -320, y: 140, z: 0}
   m_ExitPosition: {x: 2020, y: 630, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 3200955388891971920}
@@ -1352,9 +1337,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: MeleeAttack
-    m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: MeleeAttackIndex
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3200955388891971920}

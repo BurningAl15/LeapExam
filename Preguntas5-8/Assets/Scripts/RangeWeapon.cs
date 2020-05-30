@@ -13,4 +13,13 @@ public class RangeWeapon : MonoBehaviour
         transform.localScale = new Vector3(_direction, 1, 1);
         rgb.velocity=Vector2.right*_direction*speed;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            rgb.velocity=Vector2.zero;
+            gameObject.SetActive(false);
+        }
+    }
 }
