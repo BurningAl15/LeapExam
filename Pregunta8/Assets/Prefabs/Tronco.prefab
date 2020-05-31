@@ -259,10 +259,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 200
   currentHealthPoints: 0
-  isAlive: 0
+  isAlive: 1
   lockOnPoint: {fileID: 738106365}
   anim: {fileID: 1299970944}
-  id: 0
+  id: 3
   enemyType: Terrestre
   enemyAttack:
     attackDuration: 8

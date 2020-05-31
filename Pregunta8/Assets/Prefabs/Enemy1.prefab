@@ -259,8 +259,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 200
   currentHealthPoints: 0
+  isAlive: 1
   lockOnPoint: {fileID: 1461076039}
   anim: {fileID: 2036075100}
+  id: 4
+  enemyType: 
+  enemyAttack:
+    attackDuration: 0
+    attackTags: []
+    reactionTags: []
 --- !u!95 &2036075100
 Animator:
   serializedVersion: 3

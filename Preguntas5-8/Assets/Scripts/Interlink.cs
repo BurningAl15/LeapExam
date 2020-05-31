@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Interlink : MonoBehaviour
 {
@@ -223,5 +225,4 @@ public class Interlink : MonoBehaviour
         Vector3 temp = new Vector3(Mathf.Lerp(a.x, b.x, duration), Mathf.Lerp(a.y, b.y, duration) + 2, 0);
         return temp;
     }
-    
 }
