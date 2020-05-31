@@ -1,0 +1,2 @@
+En caso no tuviese una lista de enemigos activos, tendría que buscar al enemigo más cercano tal vez disparando raycasts en todas direcciones, hasta encontrar un objetivo.
+De los objetivos que se encuentren obtener la distancia y ver si esta dentro del rango, si se encuentra en el rango lanzaría el rayo del interlink desde el enemigo golpeado al enemigo encontrado con el raycast que satisfaga la distancia, cuando el rayo llegara a la posición, hago el daño, y en caso el segundo interlink se activara, volvería a hacer lo mismo para el segundo posible rayo.
