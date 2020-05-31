@@ -6,16 +6,25 @@ using UnityEngine;
 public class OrquestraDirector : MonoBehaviour
 {
     public static OrquestraDirector _instance;
+
+    [SerializeField] private bool someoneAttacked = false;
+    [SerializeField] private bool isOrquestraAttackOn = false;
     
-    [SerializeField] private bool someoneAttacked;
     private Enemy[] tempEnemies;
     [SerializeField] List<Enemy> activeEnemies=new List<Enemy>();
+    
     [SerializeField] float maxDistance;
     [SerializeField] private CharacterController2D player;
+
     private Coroutine currentCoroutine = null;
 
-    public int n;
+    [SerializeField] private int n;
     
+    [SerializeField] private float t ;
+    private float orquestraAttackCooldownTimer = 0;
+    
+    [Range(0,1)]
+    [SerializeField] private float r;
     
     void Awake()
     {
@@ -27,6 +36,8 @@ public class OrquestraDirector : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        r = 1 - r;
+
     }
     
     void FilterEnemies()
@@ -68,10 +79,19 @@ public class OrquestraDirector : MonoBehaviour
         if (currentCoroutine == null)
             currentCoroutine = StartCoroutine(WaitForAttack(_duration));
     }
+
+    void OrquestraAttack()
+    {
+        
+    }
     
     IEnumerator WaitForAttack(float _duration)
     {
         someoneAttacked = true;
+        if (Random.value > r)
+        {
+            isOrquestraAttackOn = true;
+        }
         while (_duration > 0)
         {
             _duration -= Time.fixedDeltaTime;

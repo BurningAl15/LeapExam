@@ -46,13 +46,13 @@ public class Enemy : HealthSystem
       {
          if(currentHealthPoints>0)
             anim.SetTrigger("Hit");
-         else if (currentHealthPoints < 0)
-         {
-            anim.SetTrigger("Die");
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            GetComponent<Collider2D>().enabled = false;
-            this.enabled = false;
-         }
+      }
+      else
+      {
+         anim.SetTrigger("Die");
+         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+         GetComponent<Collider2D>().enabled = false;
+         this.enabled = false;
       }
    }
 
