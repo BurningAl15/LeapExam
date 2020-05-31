@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Interlink : MonoBehaviour
 {
@@ -11,18 +12,22 @@ public class Interlink : MonoBehaviour
     private bool secondInterlink;
 
     private Enemy[] tempEnemies;
-    [SerializeField] List<Enemy> inactiveEnemies=new List<Enemy>();
+    [FormerlySerializedAs("inactiveEnemies")] [SerializeField] List<Enemy> linkedEnemies=new List<Enemy>();
     [SerializeField] List<Enemy> activeEnemies=new List<Enemy>();
 
     [SerializeField] private CharacterController2D player;
     private Coroutine currentCoroutine = null;
 
-    private int n = 0;
+    [SerializeField] private int n = 0;
 
     [Range(0,1)]
     [SerializeField] private float percentageChance1;
     [Range(0,1)]
     [SerializeField] private float percentageChance2;
+
+    [SerializeField] private float maxDistance;
+
+    [SerializeField] private bool testing;
     
     void Awake()
     {
@@ -33,10 +38,34 @@ public class Interlink : MonoBehaviour
 
         tempEnemies = FindObjectsOfType<Enemy>();
 
-        percentageChance1 = 1 - percentageChance1;
-        percentageChance2 = 1 - percentageChance2;
+        if (testing)
+        {
+            percentageChance1 = 0;
+            percentageChance2 = 0;
+        }
+        else
+        {
+            percentageChance1 = 1 - percentageChance1;
+            percentageChance2 = 1 - percentageChance2;
+        }
         
-        inactiveEnemies = tempEnemies.ToList();
+        FilterEnemies();
+    }
+
+    void FilterEnemies()
+    {
+        tempEnemies = tempEnemies.OrderBy(c => GetDistance(c)).ToArray();
+
+        activeEnemies.Clear();
+        
+        //Remove enemies by direction
+        for (int i = 0; i < tempEnemies.Length; i++)
+        {
+            if (IsInRange(tempEnemies[i]) && tempEnemies[i].IsEnemyAlive())
+            {
+                activeEnemies.Add(tempEnemies[i]);
+            }
+        }
     }
 
     public void TryInterlink(Enemy _hittedEnemy)
@@ -46,13 +75,28 @@ public class Interlink : MonoBehaviour
             if (Random.value > percentageChance1)
             {
                 firstInterlink = true;
-                activeEnemies.Add(_hittedEnemy);
-                inactiveEnemies.Remove(_hittedEnemy);
-                int randomEnemy = Random.Range(0, inactiveEnemies.Count);
-                CallSpark(_hittedEnemy,inactiveEnemies[randomEnemy]);
+                if(!linkedEnemies.Contains(_hittedEnemy))
+                    linkedEnemies.Add(_hittedEnemy);
+                activeEnemies.Remove(_hittedEnemy);
+                // n++;
+                int randomEnemy = Random.Range(0, activeEnemies.Count);
+                CallSpark(_hittedEnemy,activeEnemies[randomEnemy]);
             }
         }
     }
+    
+    bool IsInRange(Enemy _tempEnemy)
+    {
+        float _tempDistance = Vector3.Distance(_tempEnemy.transform.position, player.transform.position);
+        return _tempDistance<maxDistance?true:false;
+    }
+    
+    float GetDistance(Enemy _tempEnemy)
+    {
+        float _tempDistance = Vector3.Distance(_tempEnemy.transform.position, player.transform.position);
+        return _tempDistance;
+    }
+    
     void CallSpark(Enemy a,Enemy b)
     {
         print("Call Spark");
@@ -62,75 +106,104 @@ public class Interlink : MonoBehaviour
 
     IEnumerator SparkMovement(float _duration, Enemy a, Enemy b)
     {
-        GameObject spark = ObjectPooler._instance.GetPooledObject("Spark");
-        float maxDuration=_duration;
+        if(!linkedEnemies.Contains(b))
+            linkedEnemies.Add(b);
+        n++;
+        activeEnemies.Remove(b);
         
-        activeEnemies.Add(b);
-        inactiveEnemies.Remove(b);
+        bool contains = false;
 
-        Vector3 center = CenterPoint(b.transform.position, a.transform.position, .5f);
-        
-        
-        while (_duration>0)
+        for (int i = 0; i < activeEnemies.Count; i++)
         {
-            if (spark != null)
+            for (int j = 0; j < linkedEnemies.Count; j++)
             {
-                // spark.transform.position = Vector3.Lerp(a.transform.position,b.transform.position,_duration/maxDuration);
-                spark.transform.position =SimpleBezier(b.transform.position, center,a.transform.position,_duration/maxDuration);
-                spark.transform.rotation = Quaternion.identity;
-                spark.SetActive(true);
+                if (activeEnemies[i].id == linkedEnemies[j].id)
+                    contains = true;
+                break;
             }
-            
-            _duration -= Time.fixedDeltaTime;
-            yield return null;
         }
 
-        b.GetComponent<Enemy>().DoDamage(10);
-        
-        spark.SetActive(false);
-        
-        yield return null;
-        print("Spark Moving");
-
-        if (!secondInterlink)
+        if (!contains)
         {
-            if (Random.value > percentageChance2)
-            {
-                _duration = maxDuration;
+            GameObject spark = ObjectPooler._instance.GetPooledObject("Spark");
+            float maxDuration=_duration;
 
-                int randomEnemy = Random.Range(0, inactiveEnemies.Count);
-                
-                center = CenterPoint(inactiveEnemies[randomEnemy].transform.position, b.transform.position, .5f);
-                
-                spark = ObjectPooler._instance.GetPooledObject("Spark");
-                while (_duration>0)
+            Vector3 center = CenterPoint(b.transform.position, a.transform.position, .5f);
+            
+            //Spark moves from a point to other in a curve
+            while (_duration>0)
+            {
+                if (spark != null)
                 {
-                    if (spark != null)
-                    {
-                        spark.transform.position =SimpleBezier(inactiveEnemies[randomEnemy].transform.position, center,b.transform.position,_duration/maxDuration);
-                        spark.transform.rotation = Quaternion.identity;
-                        spark.SetActive(true);
-                    }
-            
-                    _duration -= Time.fixedDeltaTime;
-                    yield return null;
+                    spark.transform.position =SimpleBezier(b.transform.position, center,a.transform.position,_duration/maxDuration);
+                    spark.transform.rotation = Quaternion.identity;
+                    spark.SetActive(true);
                 }
-                inactiveEnemies[randomEnemy].GetComponent<Enemy>().DoDamage(10);
                 
-                activeEnemies.Add(inactiveEnemies[randomEnemy]);
-                inactiveEnemies.Remove(inactiveEnemies[randomEnemy]);
-                
-                spark.SetActive(false);
-
-                print("Spark 2 --------- Moving");
-
-                secondInterlink = true;
+                _duration -= Time.fixedDeltaTime;
+                yield return null;
             }
+
+            b.GetComponent<Enemy>().DoDamage(10);
+            
+            spark.SetActive(false);
+            
+            yield return null;
+            print("Spark Moving");
+
+            int randomEnemy = Random.Range(0, activeEnemies.Count);
+
+            if (!secondInterlink)
+            {
+                if (activeEnemies[randomEnemy] != null)
+                {
+                    if (Random.value > percentageChance2)
+                    {
+                        _duration = maxDuration;
+                        
+                        center = CenterPoint(activeEnemies[randomEnemy].transform.position, a.transform.position, .5f);
+                    
+                        spark = ObjectPooler._instance.GetPooledObject("Spark");
+                    
+                        while (_duration>0)
+                        {
+                            if (spark != null)
+                            {
+                                spark.transform.position = SimpleBezier(activeEnemies[randomEnemy].transform.position, center,a.transform.position,_duration/maxDuration);
+                                spark.transform.rotation = Quaternion.identity;
+                                spark.SetActive(true);
+                            }
+                
+                            _duration -= Time.fixedDeltaTime;
+                            yield return null;
+                        }
+                        //When spark arrives to active enemy's position, do damage and turn off
+                        spark.SetActive(false);
+                        activeEnemies[randomEnemy].GetComponent<Enemy>().DoDamage(10);
+                    
+                        if(!linkedEnemies.Contains(activeEnemies[randomEnemy]))
+                            linkedEnemies.Add(activeEnemies[randomEnemy]);
+                        activeEnemies.Remove(activeEnemies[randomEnemy]);
+                        n++;
+
+                        print("Spark 2 --------- Moving");
+
+                        secondInterlink = true;
+                    }
+                }
+                else
+                {
+                    linkedEnemies.Clear();
+                    n = linkedEnemies.Count;
+                }
+            }
+            FilterEnemies();
         }
-
-        inactiveEnemies = tempEnemies.ToList();
-
-        // activeEnemies.Clear();
+        else
+        {
+            linkedEnemies.Clear();
+            n = linkedEnemies.Count;
+        }
 
         firstInterlink = false;
         secondInterlink = false;
@@ -148,8 +221,6 @@ public class Interlink : MonoBehaviour
     Vector3 CenterPoint(Vector3 a, Vector3 b, float duration)
     {
         Vector3 temp = new Vector3(Mathf.Lerp(a.x, b.x, duration), Mathf.Lerp(a.y, b.y, duration) + 2, 0);
-
-        // return Vector3.Lerp(a, b, duration);
         return temp;
     }
     

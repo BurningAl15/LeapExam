@@ -343,7 +343,7 @@ public class CharacterController2D : MonoBehaviour
         {
             Enemy tempEnemy=enemy.gameObject.GetComponent<Enemy>();
             tempEnemy.DoDamage(10);
-            Interlink._instance.TryInterlink(tempEnemy);
+            tempEnemy.OnMeleeAttackConnected();
         }
     }
 
