@@ -6,14 +6,14 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tronco
+  m_Name: Mono
   m_Controller: {fileID: 9100000, guid: 2298b2a6597449c4cbac574960dbb8ec, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 57c7486a8a0079e4588aaa7d4c165837, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 55500aa1cff749f4cbbd9550f72e8c3c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 57c7486a8a0079e4588aaa7d4c165837, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 50470078c684b7e44a986158bdbe91a3, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 16730be5f992b8448b390e805b7705b8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 50470078c684b7e44a986158bdbe91a3, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 4ce251929d84b3a4481567f319eeb8d8, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 2e72d923e794a4042a0596e846953a06, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4ce251929d84b3a4481567f319eeb8d8, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 85fa87d64c27cfe498ab2ed586c06278, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7471372a7e3028d46a44a727e81d59af, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 85fa87d64c27cfe498ab2ed586c06278, type: 2}

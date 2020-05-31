@@ -63,7 +63,7 @@ public class Enemy : HealthSystem
    
    public void OnMeleeAttackConnected()
    {
-      Interlink._instance.TryInterlink(this);
+      // Interlink._instance.TryInterlink(this);
    }
 
    public void GetEnemyAttacks()

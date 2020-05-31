@@ -1,24 +1,27 @@
 fileFormatVersion: 2
-guid: f8b30c2afe165d645b54d500a9c30862
+guid: 581f12722084f2f4592d7dec893e718b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4723107735738678597
-    second: Idle_0
+      213: 2299928196995773351
+    second: DeathSlime_0
   - first:
-      213: -7385789195546760866
-    second: Idle_1
+      213: 7187632925653240700
+    second: DeathSlime_1
   - first:
-      213: 3234629978573100161
-    second: Idle_2
+      213: -90702126400323083
+    second: DeathSlime_2
   - first:
-      213: 6373048116405451881
-    second: Idle_3
+      213: -1287628048685721915
+    second: DeathSlime_3
+  - first:
+      213: -3075486073076410919
+    second: DeathSlime_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -57,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -95,23 +98,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Lumin
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -130,29 +121,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_0
+      name: DeathSlime_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 150
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6d675e2bec382b49939789ac442ef07
-      internalID: 4723107735738678597
+      spriteID: 7a376d6728cfaef10800000000000000
+      internalID: 2299928196995773351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_1
+      name: DeathSlime_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 16
         y: 0
-        width: 150
-        height: 150
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7783950422e08a54da2d0eec1b7c4e42
-      internalID: -7385789195546760866
+      spriteID: c7b867d601a9fb360800000000000000
+      internalID: 7187632925653240700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_2
+      name: DeathSlime_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 32
         y: 0
-        width: 150
-        height: 150
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d07a2bfa7d34474ca8d6b9fbf48e946
-      internalID: 3234629978573100161
+      spriteID: 5f1498785e2cdbef0800000000000000
+      internalID: -90702126400323083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_3
+      name: DeathSlime_3
       rect:
         serializedVersion: 2
-        x: 450
+        x: 48
         y: 0
-        width: 150
-        height: 150
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,8 +202,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 996a875c14f82334cbb937dea20b6223
-      internalID: 6373048116405451881
+      spriteID: 5c61243ac1d612ee0800000000000000
+      internalID: -1287628048685721915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeathSlime_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d59e9e06bda155d0800000000000000
+      internalID: -3075486073076410919
       vertices: []
       indices: 
       edges: []

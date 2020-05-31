@@ -128,10 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 858441810}
     m_Modifications:
-    - target: {fileID: 738106366, guid: a699f3f30792947449af8a010e1a3d96, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2395345644339012375, guid: a699f3f30792947449af8a010e1a3d96,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,16 +187,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy2 (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707768968954781425, guid: a699f3f30792947449af8a010e1a3d96,
-        type: 3}
-      propertyPath: maxHealthPoints
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707768968954781425, guid: a699f3f30792947449af8a010e1a3d96,
-        type: 3}
-      propertyPath: isAlive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a699f3f30792947449af8a010e1a3d96, type: 3}
@@ -873,10 +859,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 858441810}
     m_Modifications:
-    - target: {fileID: 738106366, guid: a699f3f30792947449af8a010e1a3d96, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2395345644339012375, guid: a699f3f30792947449af8a010e1a3d96,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -936,21 +918,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy2 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707768968954781425, guid: a699f3f30792947449af8a010e1a3d96,
-        type: 3}
-      propertyPath: maxHealthPoints
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707768968954781425, guid: a699f3f30792947449af8a010e1a3d96,
-        type: 3}
-      propertyPath: id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707768968954781425, guid: a699f3f30792947449af8a010e1a3d96,
-        type: 3}
-      propertyPath: isAlive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a699f3f30792947449af8a010e1a3d96, type: 3}
@@ -1324,16 +1291,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 858441810}
     m_Modifications:
-    - target: {fileID: 648635774143614612, guid: 2ea51e6ad211fef419627d77c711e7e5,
-        type: 3}
-      propertyPath: id
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 648635774143614612, guid: 2ea51e6ad211fef419627d77c711e7e5,
-        type: 3}
-      propertyPath: isAlive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8408842652919584284, guid: 2ea51e6ad211fef419627d77c711e7e5,
         type: 3}
       propertyPath: m_Name
@@ -1420,11 +1377,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 907426978}
-    - target: {fileID: 826833892766667224, guid: bc90a6e8389920e42bd3f6a14a18d957,
-        type: 3}
-      propertyPath: maxDistance
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 826833892766667225, guid: bc90a6e8389920e42bd3f6a14a18d957,
         type: 3}
       propertyPath: m_Name
