@@ -156,6 +156,12 @@ public class LockOnSystem : MonoBehaviour
             {
                 activeEnemies[i].DeactivateEnemy();
             }
+
+            if (selectedIndex > activeEnemies.Count - 1)
+            {
+                selectedIndex = 0;
+            }
+            
             activeEnemies[selectedIndex].ActivateEnemy();
         }
     }
