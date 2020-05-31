@@ -24,7 +24,6 @@ public class ChainAttackManager : MonoBehaviour
         }
     }
 
-
     public void GetDelay(float _currentDelay,float _maxDelay)
     {
         // print("Call Delay - ChainAttackManager");
