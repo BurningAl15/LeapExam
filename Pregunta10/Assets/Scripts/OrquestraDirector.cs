@@ -9,20 +9,21 @@ public class OrquestraDirector : MonoBehaviour
 {
     public static OrquestraDirector _instance;
 
-    [SerializeField] private bool isOrquestraAttackOn = false;
+    [Header("Main Parameters")]
     
-    private Enemy[] tempEnemies;
     [SerializeField] List<Enemy> activeEnemies=new List<Enemy>();
-    
-    [SerializeField] float maxDistance;
-    public CharacterController2D player;
+    private Enemy[] tempEnemies;
 
     private Coroutine currentCoroutine = null;
 
+    [Tooltip("Max number of attacks to unlock, reassigns the value when an orquestra Attack occurs")]
     [SerializeField] private int n;
+    [Tooltip("Decreases when an enemy that can attack, attack")]
     [SerializeField] private int attacksToUnlockOrquestra = 0;
     
+    [Tooltip("Max cooldown time to unlock, reassigns the value when an orquestra Attack occurs")]
     [SerializeField] private float t ;
+    [Tooltip("Decreases in update method")]
     [SerializeField] private float orquestraAttackCooldownTimer = -1;
     
     [Range(0,1)]
@@ -30,6 +31,12 @@ public class OrquestraDirector : MonoBehaviour
 
     private string enemyType = "none";
 
+    [Header("Extras")]
+    [SerializeField] private bool isOrquestraAttackOn = false;
+    [SerializeField] float maxDistance;
+    public CharacterController2D player;
+
+    
     public bool IsOrquestraAttackOn
     {
         get => isOrquestraAttackOn;
@@ -129,7 +136,10 @@ public class OrquestraDirector : MonoBehaviour
             {
                 isOrquestraAttackOn = false;
                 orquestraAttackCooldownTimer = -1;
+                OrquestraMessage_UnlockAttack();
             }
+
+            OrquestraMessage_UnlockCooldown();
         }
     }
 
