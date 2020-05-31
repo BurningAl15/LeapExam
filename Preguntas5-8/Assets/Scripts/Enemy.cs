@@ -22,6 +22,12 @@ public class Enemy : HealthSystem
    public string enemyType;
 
    public EnemyAttack enemyAttack;
+
+   [SerializeField] private float distance;
+
+   [SerializeField] private bool isAttacking=false;
+
+   public bool CanAttackInOrquestra=false;
    
    protected override void Awake()
    {
@@ -68,18 +74,60 @@ public class Enemy : HealthSystem
 
    public void GetEnemyAttacks()
    {
-      OrquestraDirector._instance.Wait_ForAttack(enemyAttack.attackDuration);
+      OrquestraDirector._instance.Wait_ForAttack(enemyAttack.attackDuration,this);
    }
 
    private void Update()
    {
-      if (!OrquestraDirector._instance.SomeoneAttacked)
+      if (!OrquestraDirector._instance.IsOrquestraAttackOn ^ CanAttackInOrquestra)
       {
-         //Attack
+         if (!OrquestraDirector._instance.EnemyType.Contains(enemyType) || !OrquestraDirector._instance.EnemyType.Contains("none"))
+         {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+               if(this.name.Contains("Rana"))
+                  Attack();
+         
+               print("El sistema ha permitido el ataque del enemigo " + this.name);
+
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+               if(this.name.Contains("Tronco"))
+                  Attack();
+
+               print("El sistema ha permitido el ataque del enemigo " + this.name);
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+               if(this.name.Contains("Mono"))
+                  Attack();
+
+               print("El sistema ha permitido el ataque del enemigo " + this.name);
+            }
+         }
+         else
+         {
+            OrquestraDirector._instance.OrquestraMessage_SameType(enemyType);
+         }
       }
-      else
+   }
+
+   public void Attack()
+   {
+      if (!isAttacking)
       {
-         return;
+         isAttacking = true;
+         GetEnemyAttacks();
+         anim.SetTrigger("Attack");
+         print("Enemigo " + this.name + " Intentó atacar");
       }
+   }
+
+   public void EndAttackState()
+   {
+      // print("Attack animation end");
+      isAttacking = false;
    }
 }

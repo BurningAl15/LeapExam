@@ -27,13 +27,13 @@ public class ChainAttackManager : MonoBehaviour
 
     public void GetDelay(float _currentDelay,float _maxDelay)
     {
-        print("Call Delay - ChainAttackManager");
+        // print("Call Delay - ChainAttackManager");
         ChangeAlpha(_currentDelay/_maxDelay);
     }
 
     public void CallMessage()
     {
-        print("Call Message - ChainAttackManager");
+        // print("Call Message - ChainAttackManager");
         chainIndex++;
         chainText.text = "Chain Attack!\nx" + chainIndex;
         ChangeAlpha(1);
@@ -42,7 +42,7 @@ public class ChainAttackManager : MonoBehaviour
 
     public void Reset()
     {
-        print("Call Reset - ChainAttackManager");
+        // print("Call Reset - ChainAttackManager");
         ChangeAlpha(0);
         chainIndex = 0;
         chainText.text = "Chain Attack!\nx" + chainIndex;

@@ -317,6 +317,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272875593}
   m_CullTransparentMesh: 0
+--- !u!114 &415578179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1930116813674183331, guid: 3d4e1d1d06c7f02469a412689c633bd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1930116814379468289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f7ef0f26d71244eb3a53f1db253b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &472705580
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,14 +876,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8c0915d067b2b4ca6c4c3ae320cd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  someoneAttacked: 0
   isOrquestraAttackOn: 0
   activeEnemies: []
-  maxDistance: 0
-  player: {fileID: 0}
-  n: 0
-  t: 0
-  r: 0
+  maxDistance: 0.4
+  player: {fileID: 415578179}
+  n: 2
+  t: 1
+  r: 1
 --- !u!4 &1953915525
 Transform:
   m_ObjectHideFlags: 0
@@ -1203,7 +1214,7 @@ PrefabInstance:
     - target: {fileID: 278869390043504640, guid: c109737248b227f44b02a0043d0388fa,
         type: 3}
       propertyPath: m_Name
-      value: Sapo
+      value: Rana
       objectReference: {fileID: 0}
     - target: {fileID: 278869390043504641, guid: c109737248b227f44b02a0043d0388fa,
         type: 3}
@@ -1238,7 +1249,7 @@ PrefabInstance:
     - target: {fileID: 278869390043504700, guid: c109737248b227f44b02a0043d0388fa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.55
+      value: -0.358
       objectReference: {fileID: 0}
     - target: {fileID: 278869390043504700, guid: c109737248b227f44b02a0043d0388fa,
         type: 3}
