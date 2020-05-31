@@ -12,7 +12,7 @@ public class Interlink : MonoBehaviour
     private bool secondInterlink;
 
     private Enemy[] tempEnemies;
-    [FormerlySerializedAs("inactiveEnemies")] [SerializeField] List<Enemy> linkedEnemies=new List<Enemy>();
+    [SerializeField] List<Enemy> linkedEnemies=new List<Enemy>();
     [SerializeField] List<Enemy> activeEnemies=new List<Enemy>();
 
     [SerializeField] private CharacterController2D player;

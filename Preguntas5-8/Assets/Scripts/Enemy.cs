@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class EnemyAttack
+{
+   public float attackDuration;
+   public string[] attackTags;
+   public string[] reactionTags;
+}
+
 public class Enemy : HealthSystem
 {
    [SerializeField] private GameObject lockOnPoint;
@@ -10,6 +18,10 @@ public class Enemy : HealthSystem
    [SerializeField] private Animator anim;
 
    public int id;
+
+   public string enemyType;
+
+   public EnemyAttack enemyAttack;
    
    protected override void Awake()
    {
@@ -52,5 +64,22 @@ public class Enemy : HealthSystem
    public void OnMeleeAttackConnected()
    {
       Interlink._instance.TryInterlink(this);
+   }
+
+   public void GetEnemyAttacks()
+   {
+      OrquestraDirector._instance.Wait_ForAttack(enemyAttack.attackDuration);
+   }
+
+   private void Update()
+   {
+      if (!OrquestraDirector._instance.SomeoneAttacked)
+      {
+         //Attack
+      }
+      else
+      {
+         return;
+      }
    }
 }
