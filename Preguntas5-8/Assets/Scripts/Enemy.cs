@@ -24,9 +24,9 @@ public class Enemy : HealthSystem
       lockOnPoint.SetActive(false);
    }
 
-   public override void Damage(int _damagePoints)
+   public override void DoDamage(int _damagePoints)
    {
-      base.Damage(_damagePoints);
+      base.DoDamage(_damagePoints);
       if (currentHealthPoints > 0)
       {
          anim.SetTrigger("Hit");
@@ -38,5 +38,10 @@ public class Enemy : HealthSystem
          GetComponent<Collider2D>().enabled = false;
          this.enabled = false;
       }
+   }
+
+   public void OnMeleeAttackConnected()
+   {
+      
    }
 }

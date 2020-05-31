@@ -13,7 +13,7 @@ public class HealthSystem : MonoBehaviour
         currentHealthPoints = maxHealthPoints;
     }
 
-    public virtual void Damage(int _damagePoints)
+    public virtual void DoDamage(int _damagePoints)
     {
         currentHealthPoints -= _damagePoints;
         if (currentHealthPoints <= 0)

@@ -307,7 +307,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ThrowWeapon()
     {
-        GameObject knife = ObjectPooler._instance.GetPooledObject();
+        GameObject knife = ObjectPooler._instance.GetPooledObject("Weapon");
         if (knife != null)
         {
             print("Call Knife");
@@ -342,7 +342,7 @@ public class CharacterController2D : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Enemy tempEnemy=enemy.gameObject.GetComponent<Enemy>();
-            tempEnemy.Damage(10);
+            tempEnemy.DoDamage(10);
             Interlink._instance.TryInterlink(tempEnemy);
         }
     }
