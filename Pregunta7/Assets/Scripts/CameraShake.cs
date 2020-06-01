@@ -38,7 +38,7 @@ public class CameraShake : MonoBehaviour
         {
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
-            print(x +" - " + y);
+            // print(x +" - " + y);
             transform.position = Vector3.Lerp(new Vector3(orignalPosition.x + x, orignalPosition.y + y, -10f),
                 orignalPosition, elapsed / duration);
             elapsed += Time.fixedDeltaTime;

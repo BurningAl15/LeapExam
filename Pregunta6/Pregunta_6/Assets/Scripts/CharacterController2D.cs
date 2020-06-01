@@ -58,7 +58,7 @@ public class CharacterController2D : MonoBehaviour
 
     #region Input Methods
 
-    public void Melee_Attack()
+  public void Melee_Attack()
     {
         if (finishAttack && !rolling)
         {
@@ -71,17 +71,15 @@ public class CharacterController2D : MonoBehaviour
             //Start the attack chain            
             meleeAttack = true;
             rangeAttack = false;
-
-            anim.SetBool("MeleeAttack", meleeAttack);
-            anim.SetBool("RangeAttack", rangeAttack);
-
             //Let us know in which attack we are
             meleeAttackIndex++;
 
             if (meleeAttackIndex > 2)
                 meleeAttackIndex = 0;
-
+            
+            anim.SetBool("MeleeAttack", meleeAttack);
             anim.SetInteger("MeleeAttackIndex", meleeAttackIndex);
+            anim.SetBool("RangeAttack", rangeAttack);
         }
     }
 
@@ -96,19 +94,18 @@ public class CharacterController2D : MonoBehaviour
             rgb.velocity = Vector2.zero;
 
             //Start the attack chain            
-            meleeAttack = false;
             rangeAttack = true;
-
-            anim.SetBool("MeleeAttack", meleeAttack);
-            anim.SetBool("RangeAttack", rangeAttack);
+            meleeAttack = false;
 
             //Let us know in which attack we are
             rangeAttackIndex++;
 
             if (rangeAttackIndex > 1)
                 rangeAttackIndex = 0;
-
+            
+            anim.SetBool("RangeAttack", rangeAttack);
             anim.SetInteger("RangeAttackIndex", rangeAttackIndex);
+            anim.SetBool("MeleeAttack", meleeAttack);
         }
     }
 
@@ -126,14 +123,13 @@ public class CharacterController2D : MonoBehaviour
             //Start the attack chain            
             airAttack = true;
 
-            anim.SetBool("AirAttack", airAttack);
-
             //Let us know in which attack we are
             airAttackIndex++;
 
             if (airAttackIndex > 2)
                 airAttackIndex = 0;
 
+            anim.SetBool("AirAttack", airAttack);
             anim.SetInteger("AirAttackIndex", airAttackIndex);
         }
     }
@@ -223,8 +219,8 @@ public class CharacterController2D : MonoBehaviour
             {
                 attackChainTimer -= 0.01f;
 
-                ChainAttackManager._instance.GetDelay(attackChainTimer,attackChainMaxDelay);
-
+                // ChainAttackManager._instance.GetDelay(attackChainTimer,attackChainMaxDelay);
+                print("Running");
             }
             else if (attackChainTimer < 0)
             {
@@ -250,7 +246,8 @@ public class CharacterController2D : MonoBehaviour
                         break;
                 }
 
-                ChainAttackManager._instance.Reset();
+                // ChainAttackManager._instance.Reset();
+                print("End");
 
                 rgb.gravityScale = gravityScale;
                 attackChainTimer = attackChainMaxDelay;
@@ -266,19 +263,19 @@ public class CharacterController2D : MonoBehaviour
             rangeAttack = false;
             airAttack = false;
 
-            anim.SetBool("MeleeAttack", meleeAttack);
-            anim.SetBool("RangeAttack", rangeAttack);
-            anim.SetBool("AirAttack", airAttack);
-
             meleeAttackIndex = -1;
             rangeAttackIndex = -1;
             airAttackIndex = -1;
+            
+            anim.SetBool("MeleeAttack", meleeAttack);
+            anim.SetBool("RangeAttack", rangeAttack);
+            anim.SetBool("AirAttack", airAttack);
 
             anim.SetInteger("MeleeAttackIndex", meleeAttackIndex);
             anim.SetInteger("RangeAttackIndex", rangeAttackIndex);
             anim.SetInteger("AirAttackIndex", airAttackIndex);
 
-            // ChainAttackManager._instance.Reset();
+            ChainAttackManager._instance.Reset();
 
             rgb.gravityScale = gravityScale;
             attackChainTimer = attackChainMaxDelay;
@@ -339,7 +336,7 @@ public class CharacterController2D : MonoBehaviour
     public void FinishAttack()
     {
         finishAttack = true;
-        ChainAttackManager._instance.CallMessage();
+        ChainAttackManager._instance.CallMessage(meleeAttack,rangeAttack,airAttack);
 
         print("Calling FinishAttack");
     }

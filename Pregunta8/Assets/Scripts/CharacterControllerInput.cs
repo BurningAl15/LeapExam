@@ -30,10 +30,13 @@ public class CharacterControllerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 player.Jump();
-            if (Input.GetKeyDown(KeyCode.J))
-                player.Melee_Attack();
-            if (Input.GetKeyDown(KeyCode.I))
-                player.Range_Attack();
+            if (player.GetFinishAttack())
+            {
+                if (Input.GetKeyDown(KeyCode.J))
+                    player.Melee_Attack();
+                if (Input.GetKeyDown(KeyCode.I))
+                    player.Range_Attack();
+            }
             if (Input.GetKeyDown(KeyCode.L))
                 player.Roll();
         }

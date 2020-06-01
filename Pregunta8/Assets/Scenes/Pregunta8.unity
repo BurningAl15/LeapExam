@@ -441,8 +441,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.614}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80.19995, y: -50.899902}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 87.1, y: -58.8}
+  m_SizeDelta: {x: 345.8, y: 89.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &272875595
 Animator:
@@ -482,7 +482,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 66e37b6166842574b8483860dce7a4a8, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -1281,7 +1281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e9e90f7393a7d48990a19144b18ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chainIndex: 0
+  meleeIndex: 0
+  rangeIndex: 0
+  airIndex: 0
   chainText: {fileID: 272875596}
   anim: {fileID: 272875595}
 --- !u!1001 &1608943639

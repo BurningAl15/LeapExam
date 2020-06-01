@@ -88,7 +88,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.26666668
-    functionName: Camera_Shake_Hit3
+    functionName: Camera_Shake_Hit1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

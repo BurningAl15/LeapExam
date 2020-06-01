@@ -14,7 +14,6 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Movement")] [SerializeField] private float speed;
     private int direction = 1;
-    public int Direction => direction;
 
     [Header("Jump")]
     public bool isGrounded;
@@ -53,6 +52,8 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Roll")] [SerializeField] private bool rolling = false;
 
+    private Coroutine currentCoroutine = null;
+    
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -76,16 +77,14 @@ public class CharacterController2D : MonoBehaviour
             //Start the attack chain            
             meleeAttack = true;
             rangeAttack = false;
-
-            anim.SetBool("MeleeAttack", meleeAttack);
-            anim.SetBool("RangeAttack", rangeAttack);
-
             //Let us know in which attack we are
             meleeAttackIndex++;
 
             if (meleeAttackIndex > 2)
                 meleeAttackIndex = 0;
-
+            
+            anim.SetBool("MeleeAttack", meleeAttack);
+            anim.SetBool("RangeAttack", rangeAttack);
             anim.SetInteger("MeleeAttackIndex", meleeAttackIndex);
         }
     }
@@ -104,15 +103,14 @@ public class CharacterController2D : MonoBehaviour
             meleeAttack = false;
             rangeAttack = true;
 
-            anim.SetBool("MeleeAttack", meleeAttack);
-            anim.SetBool("RangeAttack", rangeAttack);
-
             //Let us know in which attack we are
             rangeAttackIndex++;
 
             if (rangeAttackIndex > 1)
                 rangeAttackIndex = 0;
-
+            
+            anim.SetBool("MeleeAttack", meleeAttack);
+            anim.SetBool("RangeAttack", rangeAttack);
             anim.SetInteger("RangeAttackIndex", rangeAttackIndex);
         }
     }
@@ -131,14 +129,13 @@ public class CharacterController2D : MonoBehaviour
             //Start the attack chain            
             airAttack = true;
 
-            anim.SetBool("AirAttack", airAttack);
-
             //Let us know in which attack we are
             airAttackIndex++;
 
             if (airAttackIndex > 2)
                 airAttackIndex = 0;
 
+            anim.SetBool("AirAttack", airAttack);
             anim.SetInteger("AirAttackIndex", airAttackIndex);
         }
     }
@@ -227,9 +224,6 @@ public class CharacterController2D : MonoBehaviour
             if (attackChainTimer >= 0)
             {
                 attackChainTimer -= 0.01f;
-
-                ChainAttackManager._instance.GetDelay(attackChainTimer,attackChainMaxDelay);
-
             }
             else if (attackChainTimer < 0)
             {
@@ -256,6 +250,7 @@ public class CharacterController2D : MonoBehaviour
                 }
 
                 ChainAttackManager._instance.Reset();
+                print("End");
 
                 rgb.gravityScale = gravityScale;
                 attackChainTimer = attackChainMaxDelay;
@@ -271,13 +266,13 @@ public class CharacterController2D : MonoBehaviour
             rangeAttack = false;
             airAttack = false;
 
-            anim.SetBool("MeleeAttack", meleeAttack);
-            anim.SetBool("RangeAttack", rangeAttack);
-            anim.SetBool("AirAttack", airAttack);
-
             meleeAttackIndex = -1;
             rangeAttackIndex = -1;
             airAttackIndex = -1;
+            
+            anim.SetBool("MeleeAttack", meleeAttack);
+            anim.SetBool("RangeAttack", rangeAttack);
+            anim.SetBool("AirAttack", airAttack);
 
             anim.SetInteger("MeleeAttackIndex", meleeAttackIndex);
             anim.SetInteger("RangeAttackIndex", rangeAttackIndex);
@@ -360,76 +355,12 @@ public class CharacterController2D : MonoBehaviour
     public void FinishAttack()
     {
         finishAttack = true;
-        ChainAttackManager._instance.CallMessage();
-
+        ChainAttackManager._instance.CallMessage(meleeAttack,rangeAttack,airAttack);
+        
         print("Calling FinishAttack");
     }
 
     #endregion
-
-    // IEnumerator Finish_Attack(string _attackType, string _attackTypeIndex)
-    // {
-    //     while (finishAttack)
-    //     {
-    //         
-    //     }
-    //     //Reset if melee
-    //     if (GetAttackType("melee"))
-    //         // ResetAttackTrigger("MeleeAttack", "MeleeAttackIndex");
-    //     {
-    //         if (finishAttack)
-    //         {
-    //             if (attackChainTimer >= 0)
-    //             {
-    //                 attackChainTimer -= 0.01f;
-    //
-    //                 ChainAttackManager._instance.GetDelay(attackChainTimer,attackChainMaxDelay);
-    //
-    //             }
-    //             else if (attackChainTimer < 0)
-    //             {
-    //                 switch (_attackType)
-    //                 {
-    //                     case "MeleeAttack":
-    //                         meleeAttack = false;
-    //                         anim.SetBool(_attackType, meleeAttack);
-    //                         meleeAttackIndex = -1;
-    //                         anim.SetInteger(_attackTypeIndex, meleeAttackIndex);
-    //                         break;
-    //                     case "RangeAttack":
-    //                         rangeAttack = false;
-    //                         anim.SetBool(_attackType, rangeAttack);
-    //                         rangeAttackIndex = -1;
-    //                         anim.SetInteger(_attackTypeIndex, rangeAttackIndex);
-    //                         break;
-    //                     case "AirAttack":
-    //                         airAttack = false;
-    //                         anim.SetBool(_attackType, airAttack);
-    //                         airAttackIndex = -1;
-    //                         anim.SetInteger(_attackTypeIndex, airAttackIndex);
-    //                         break;
-    //                 }
-    //
-    //                 ChainAttackManager._instance.Reset();
-    //
-    //                 rgb.gravityScale = gravityScale;
-    //                 attackChainTimer = attackChainMaxDelay;
-    //             }
-    //         }
-    //     }
-    //     //Reset if range
-    //     else if (GetAttackType("range"))
-    //         ResetAttackTrigger("RangeAttack", "RangeAttackIndex");
-    //     else
-    //     {
-    //         //Reset if air
-    //         if (GetAttackType("air"))
-    //             ResetAttackTrigger("AirAttack", "AirAttackIndex");
-    //         //Reset all
-    //         else
-    //             ResetAttackAnimations();
-    //     }
-    // }
 
     private void OnDrawGizmos()
     {

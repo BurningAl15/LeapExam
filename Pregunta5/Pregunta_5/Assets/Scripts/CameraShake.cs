@@ -40,7 +40,8 @@ public class CameraShake : MonoBehaviour
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 
-            transform.position = new Vector3(x, y, -10f);
+            transform.position = Vector3.Lerp(new Vector3(orignalPosition.x + x, orignalPosition.y + y, -10f),
+                orignalPosition, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return 0;
         }

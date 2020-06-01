@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1930116813674183335, guid: 3d4e1d1d06c7f02469a412689c633bd3,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d4e1d1d06c7f02469a412689c633bd3, type: 3}
 --- !u!1 &166730104
@@ -327,7 +332,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 62fa0055cc59bb54093eeae6e16f6e06, type: 3}
     m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
@@ -918,6 +923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e9e90f7393a7d48990a19144b18ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chainIndex: 0
+  meleeIndex: 0
+  rangeIndex: 0
+  airIndex: 0
   chainText: {fileID: 457916564}
   anim: {fileID: 457916567}
