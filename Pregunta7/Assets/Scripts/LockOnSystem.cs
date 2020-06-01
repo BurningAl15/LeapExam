@@ -55,7 +55,7 @@ public class LockOnSystem : MonoBehaviour
     {
         Vector2 bounds =
             camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.transform.position.z));
-        Vector2 enemyPosition = _enemy.transform.position;
+        Vector2 enemyPosition = _enemy!=null?_enemy.transform.position: pos;
         bool condition = enemyPosition.x < bounds.x && enemyPosition.x > bounds.x * -1 && enemyPosition.y < bounds.y &&
                          enemyPosition.y > bounds.y * -1;
         return condition;
@@ -63,8 +63,11 @@ public class LockOnSystem : MonoBehaviour
     
     Vector3 LookingDirection(Enemy _tempEnemy)
     {
-        Vector3 _tempCurrentDirection = _tempEnemy.transform.position - pos;
-
+        Vector3 _tempCurrentDirection;
+        if(_tempEnemy!=null)
+            _tempCurrentDirection =_tempEnemy.transform.position - pos;
+        else
+            _tempCurrentDirection=Vector3.zero;
         return _tempCurrentDirection;
     }
 
@@ -82,7 +85,10 @@ public class LockOnSystem : MonoBehaviour
 
     float GetVisionField(Enemy _tempEnemy,Vector3 _direction)
     {
-        return Vector3.Angle(LookingDirection(_tempEnemy), _direction);
+        if(_tempEnemy != null)
+            return Vector3.Angle(LookingDirection(_tempEnemy), _direction);
+        else
+            return 0;
     }
     
     private bool IsInVisionField(Enemy _tempEnemy,Vector3 _direction,float _visiondAngle)
@@ -118,12 +124,12 @@ public class LockOnSystem : MonoBehaviour
             ActivateEnemies();
         }
 
-        Debug.DrawRay(pos,Quaternion.Euler(GetVisionField(activeEnemies[selectedIndex],forward), 0, 0)*forward,Color.red );
+        Debug.DrawRay(pos,Quaternion.Euler(GetVisionField( selectedIndex>activeEnemies.Count? activeEnemies[selectedIndex]:null,forward), 0, 0)*forward,Color.red );
         Debug.DrawRay(pos,Quaternion.Euler(0,  0,-45)*forward ,Color.green);
         Debug.DrawRay(pos,Quaternion.Euler(0,  0,45)*forward ,Color.yellow);
 
         
-        Debug.DrawRay(pos,LookingDirection(activeEnemies[selectedIndex]));
+        Debug.DrawRay(pos,LookingDirection(selectedIndex>activeEnemies.Count? activeEnemies[selectedIndex]:null));
     }
 
     void Next()
@@ -131,7 +137,7 @@ public class LockOnSystem : MonoBehaviour
         FilterEnemies();
         
         selectedIndex++;
-        if (selectedIndex > activeEnemies.Count-1)
+        if (selectedIndex > activeEnemies.Count-1)    
             selectedIndex = 0;
 
         ActivateEnemies();
@@ -164,6 +170,7 @@ public class LockOnSystem : MonoBehaviour
             
             activeEnemies[selectedIndex].ActivateEnemy();
         }
+
     }
 
     void DeactivateAllEnemies()
